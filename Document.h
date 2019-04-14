@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 
+using namespace std;
 class Document {
     
     private:
@@ -14,15 +15,16 @@ class Document {
     public:
         Document();
     
-        out print_current();
-        out print_cur_index;
-        out print_all();
+        void print_current();
+        void print_cur_index();
+        friend ostream& operator<<(ostream& os, const Document& doc);
         void set_current(int new_current);
-        void append_after(string newLine);
-        void insert_before(string newLine);
-        void swap_current(string newLine)
+        void append_after();
+        void insert_before();
+        void swap_current();
         void remove_current();
         string search_after_current(string text);
-        void swap(string old_word,string new_word);
+        void swap(string line);
     
-}
+};
+#endif
