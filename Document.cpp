@@ -14,7 +14,7 @@ Document::Document(){
  print the current line of the document
  */
 void Document::print_current(){
-    
+    cout<<Document::text[Document::current_line];
 }
 
 /*
@@ -22,7 +22,8 @@ prints line number of current line followed by TAB
  followed by current line
  */
 void Document::print_cur_index(){
-    
+    cout<<Document::current_line<<"       "
+    <<Document::text[Document::current_line];
 }
 
 /*
@@ -37,7 +38,11 @@ void Document::set_current(int new_current){
  appends new text after the current line
  */
 void Document::append_after(){
-    
+    string line = "";
+    while(line != "."){
+        getline(cin,line);
+        Document::text.(Document::text.begin()+(++Document::current_line), &line);
+    }
 }
 /*
  inserts new text before the current line

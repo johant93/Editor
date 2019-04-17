@@ -4,5 +4,5 @@
 int main(int argc, const char * argv[]) {
     
     Editor editor;
-    Editor.open();
+    editor.open();
 }
