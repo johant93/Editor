@@ -23,8 +23,8 @@ class Document {
         void insert_before();
         void swap_current();
         void remove_current();
-        string search_after_current(string text);
-        void swap(string line);
+        void search_after_current(string text);
+        void swap(const string& line);
     
 };
 #endif

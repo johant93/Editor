@@ -9,6 +9,8 @@ private:
     
     Document document;
     bool quit;
+    bool is_number(const string& s);
+
     
 public:
     
