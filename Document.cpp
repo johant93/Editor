@@ -37,8 +37,10 @@ void Document::print_cur_index(){
  E.g : set_current(7) makes line #7 the current line
  */
 void Document::set_current(int new_current){
-    if(new_current>=0 && new_current<=text.size())
+    if(new_current>=0 && new_current<=text.size()){
     Document::current_line = new_current-1;
+        cout << Document::text[Document::current_line]<<"\n";
+    }
     else
         cout << "?\n" ;
 }

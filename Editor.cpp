@@ -14,7 +14,7 @@ Editor::Editor(){
     
 }
 
-void Editor::open(){
+void Editor::loop(){
     string line ;
     while (!quit) {
         getline(cin, line);

@@ -9,5 +9,5 @@
 int main(int argc, const char * argv[]) {
     
     Editor editor;
-    editor.open();
+    editor.loop();
 }
