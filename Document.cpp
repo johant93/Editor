@@ -15,9 +15,9 @@ Document::Document(){
  */
 void Document::print_current(){
     if (Document::current_line > -1)
-    cout<<Document::text[Document::current_line];
+    cout<<Document::text[Document::current_line]<<"\n";
     else
-        cout << "?" ;
+        cout << "?\n" ;
 }
 
 /*
@@ -26,7 +26,7 @@ prints line number of current line followed by TAB
  */
 void Document::print_cur_index(){
     cout<<Document::current_line+1<<"       "
-    <<Document::text[Document::current_line];
+    <<Document::text[Document::current_line]<<"\n";
 }
 
 /*
@@ -37,7 +37,7 @@ void Document::set_current(int new_current){
     if(new_current>=0 && new_current<=text.size())
     Document::current_line = new_current-1;
     else
-        cout << "?" ;
+        cout << "?\n" ;
 }
 
 /*
@@ -82,7 +82,7 @@ void Document::swap_current(){
     }
     }
     else {
-        cout << "?";
+        cout << "?\n";
     }
 }
 
@@ -95,46 +95,51 @@ void Document::remove_current(){
         Document::text.erase(it);
     }
     else
-        cout << "?";
+        cout << "?\n";
 }
 
 /*
- searchesforwardaftercurrentlineforthespecifiedtext.Thesearchwrapstothe bd
-beginning of the buffer and continues down to the current line, if necessary
+ searches forward after current line for the specified text.The search wraps to the beginning of the buffer and continues down to the current line, if necessary
  */
 void Document::search_after_current(string txt){
-    auto it = find(text.begin(),text.end(),txt);
-    if (it != text.end()) {
-        cout << *it ;
-        current_line = (int)distance(text.begin(), it);
+    string strFound = "";
+    size_t found = string::npos;
+    auto it = Document::text.begin();
+    for (; it<Document::text.end() && found== string::npos; it++) {
+        strFound = *it ;
+        found = strFound.find(txt);
+    }
+    if (it != text.end() || found != string::npos) {
+        cout << strFound << "\n" ;
+        current_line = (int)distance(text.begin(), --it);
     }
     else
-        cout << "?" ;
+        cout << "?\n" ;
 }
 
 /*
  replaces old string with new in current line
  */
-void Document::swap(const string& line){
+void Document::swap(const string& input){
     string oldStr = "",newStr = "";
-    string::const_iterator itLine = line.begin();
-    while (itLine != line.end() && *itLine != '/'){
+    string &line = Document::text[current_line];
+    size_t found = string::npos;
+    string::const_iterator itLine = input.begin();
+    //get oldstring
+    while (itLine != input.end() && *itLine != '/'){
         oldStr+= *itLine ;
         ++itLine ;
     }
-    size_t start = distance(line.begin(),itLine)+1 ;
-    size_t end = (line.length()-1)-start;
-    newStr = line.substr(start,end);
+    size_t start = distance(input.begin(),itLine)+1 ;
+    size_t end = (input.length()-1)-start;
+    newStr = input.substr(start,end);
     
-    auto it = find(text.begin(),text.end(),oldStr);
-    if (it != text.end()) {
-        current_line = (int)distance(text.begin(), it);
+    found = line.find(oldStr);
+    if(found != string::npos){
+        line.replace(line.find(oldStr),oldStr.length(),newStr);
     }
     else
-        cout << "?" ;
-    it = text.begin()+ current_line ;
-    Document::text.erase(it);
-    Document::text.insert(it,newStr);
+        cout << "?\n" ;
 }
 
 /*

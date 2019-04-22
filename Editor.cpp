@@ -49,6 +49,8 @@ void Editor::open(){
         else if (line == "Q"){  // done
             quit = true;
         }
+        else
+            cout << "?\n" ;
     }
 }
 
